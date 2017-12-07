@@ -13,7 +13,6 @@ import { Observable } from 'rxjs';
     Numeric,
   ],
   imports: [
-    BrowserModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

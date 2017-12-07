@@ -149,8 +149,6 @@ export class Numeric extends Ion implements AfterContentInit, ControlValueAccess
         @Optional() private _pickerCtrl: PickerController,
     ) {
         super(config, elementRef, renderer, 'datetime');
-        _form.register(this);
-
         if (_item) {
             this.id = 'dt-' + _item.registerInput('datetime');
             this._labelId = 'lbl-' + _item.id;
@@ -454,7 +452,6 @@ export class Numeric extends Ion implements AfterContentInit, ControlValueAccess
     }
 
     public ngOnDestroy(): void {
-        this._form.deregister(this);
     }
 
     private convertColumnsToNumbers(columns: any): number {

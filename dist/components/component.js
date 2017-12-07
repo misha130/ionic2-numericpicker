@@ -35,7 +35,6 @@ var Numeric = (function (_super) {
         _this.pickerOptions = {};
         _this.ionChange = new EventEmitter();
         _this.ionCancel = new EventEmitter();
-        _form.register(_this);
         if (_item) {
             _this.id = 'dt-' + _item.registerInput('datetime');
             _this._labelId = 'lbl-' + _item.id;
@@ -318,7 +317,6 @@ var Numeric = (function (_super) {
     Numeric.prototype.onTouched = function () {
     };
     Numeric.prototype.ngOnDestroy = function () {
-        this._form.deregister(this);
     };
     Numeric.prototype.convertColumnsToNumbers = function (columns) {
         if (columns === null)
@@ -353,51 +351,51 @@ var Numeric = (function (_super) {
         }
         return result;
     };
+    Numeric.decorators = [
+        { type: Component, args: [{
+                    selector: 'ion-numeric',
+                    template: '<div class="datetime-text">{{_text}}</div>' +
+                        '<button aria-haspopup="true" ' +
+                        'type="button" ' +
+                        '[id]="id" ' +
+                        'ion-button="item-cover" ' +
+                        '[attr.aria-labelledby]="_labelId" ' +
+                        '[attr.aria-disabled]="_disabled" ' +
+                        'class="item-cover">' +
+                        '</button>',
+                    host: {
+                        '[class.numeric-disabled]': '_disabled',
+                    },
+                    providers: [NUMERIC_VALUE_ACCESSOR],
+                    encapsulation: ViewEncapsulation.None,
+                },] },
+    ];
+    Numeric.ctorParameters = function () { return [
+        { type: Form, },
+        { type: Config, },
+        { type: ElementRef, },
+        { type: Renderer, },
+        { type: Item, decorators: [{ type: Optional },] },
+        { type: PickerController, decorators: [{ type: Optional },] },
+    ]; };
+    Numeric.propDecorators = {
+        "min": [{ type: Input },],
+        "max": [{ type: Input },],
+        "displayFormat": [{ type: Input },],
+        "pickerFormat": [{ type: Input },],
+        "cancelText": [{ type: Input },],
+        "doneText": [{ type: Input },],
+        "pickerOptions": [{ type: Input },],
+        "mode": [{ type: Input },],
+        "ionChange": [{ type: Output },],
+        "ionCancel": [{ type: Output },],
+        "_click": [{ type: HostListener, args: ['click', ['$event'],] },],
+        "_keyup": [{ type: HostListener, args: ['keyup.space',] },],
+        "disabled": [{ type: Input },],
+    };
     return Numeric;
 }(Ion));
 export { Numeric };
-Numeric.decorators = [
-    { type: Component, args: [{
-                selector: 'ion-numeric',
-                template: '<div class="datetime-text">{{_text}}</div>' +
-                    '<button aria-haspopup="true" ' +
-                    'type="button" ' +
-                    '[id]="id" ' +
-                    'ion-button="item-cover" ' +
-                    '[attr.aria-labelledby]="_labelId" ' +
-                    '[attr.aria-disabled]="_disabled" ' +
-                    'class="item-cover">' +
-                    '</button>',
-                host: {
-                    '[class.numeric-disabled]': '_disabled',
-                },
-                providers: [NUMERIC_VALUE_ACCESSOR],
-                encapsulation: ViewEncapsulation.None,
-            },] },
-];
-Numeric.ctorParameters = function () { return [
-    { type: Form, },
-    { type: Config, },
-    { type: ElementRef, },
-    { type: Renderer, },
-    { type: Item, decorators: [{ type: Optional },] },
-    { type: PickerController, decorators: [{ type: Optional },] },
-]; };
-Numeric.propDecorators = {
-    'min': [{ type: Input },],
-    'max': [{ type: Input },],
-    'displayFormat': [{ type: Input },],
-    'pickerFormat': [{ type: Input },],
-    'cancelText': [{ type: Input },],
-    'doneText': [{ type: Input },],
-    'pickerOptions': [{ type: Input },],
-    'mode': [{ type: Input },],
-    'ionChange': [{ type: Output },],
-    'ionCancel': [{ type: Output },],
-    '_click': [{ type: HostListener, args: ['click', ['$event'],] },],
-    '_keyup': [{ type: HostListener, args: ['keyup.space',] },],
-    'disabled': [{ type: Input },],
-};
 function convertToArrayOfNumbers(input, type) {
     var values = [];
     if (isString(input)) {
