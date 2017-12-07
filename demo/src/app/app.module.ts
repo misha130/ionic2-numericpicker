@@ -2,7 +2,8 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { NumericModule } from '../../../dist';
+import { NumericModule } from 'ionic2-numericpicker';
+import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
   declarations: [
     MyApp,
@@ -10,7 +11,8 @@ import { NumericModule } from '../../../dist';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    NumericModule
+    NumericModule,
+    BrowserModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
